@@ -35,45 +35,23 @@
 class Persona {
   /// Aqui definimos las propiedades
   /// final String name;
-  final String name;
-  final String height;
-  final DateTime created;
-  final String url;
+  /// ---- aqui las propiedades
 
   /// Creamos el constructor con las propiedades definidas
-  Persona({
-    required this.name,
-    required this.height,
-    required this.created,
-    required this.url,
-  });
+  /// --- aqui el constructor
 
   /// Vamos a usar nuestro constructor factory
   /// Un constructor factory quiere decir que se va a crear el objeto y se va a asignar
   /// valores a la clase justo antes de crearse.
-  factory Persona.fromJson(Map<String, dynamic> json) {
-    return Persona(
-      name: json['name'],
-      height: json['height'],
-      created: DateTime.tryParse(json['created']) ?? DateTime.now(),
-      url: json['url'],
-    );
-  }
+  /// --- aqui el factory
 
   /// Vamos a practicar getters
   /// Se puede notar que nuestro atributo height o altura es de tipo string, pero podemos necesitarlo como de tipo double
   /// parseomos ese valor para obtenerlo directamente de la clase
-  double get heightAsDouble => double.tryParse(height) ?? 0.0;
+  /// --- crea el getter
 
 
   /// Para acceder o imprimir todos los datos que hemos convertido se puede generar un método que convierta el modelo en un Mapa
   
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'height': height,
-      'created': created.toIso8601String(),
-      'url': url,
-    };
-  }
+  /// Aqui crea un metodo para obtener el modelo parseado a json
 }
