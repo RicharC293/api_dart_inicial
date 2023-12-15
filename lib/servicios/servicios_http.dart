@@ -1,5 +1,6 @@
 import 'package:conexion_api/modelos/persona.dart';
-import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 
 /// En esta clase se van a crear todos los servicios que llamemos a la api
 /// https://swapi.dev/api/
@@ -15,13 +16,10 @@ class Servicios {
   Future<Persona> obtenerPersona(int id) async {
     try {
       print("LOADING....");
-      // final uri = Uri.https(host, 'api/people/$id/');
-      // final response = await http.get(uri);
-      // final jsonResponse =
-      //     convert.jsonDecode(response.body) as Map<String, dynamic>;
-      final path = 'https://swapi.dev/api/people/$id/';
-      final response = await Dio().get(path);
-      final jsonResponse = response.data as Map<String, dynamic>;
+      final uri = Uri.https(host, 'api/people/$id/');
+      final response = await http.get(uri);
+      final jsonResponse =
+          convert.jsonDecode(response.body) as Map<String, dynamic>;
       final persona = Persona.formJson(jsonResponse);
       return persona;
     } catch (err) {
